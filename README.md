@@ -25,7 +25,7 @@ This repository Project's frontend written using **Angular CLI 15.2.7**
 - **Note**:  Backend have CORS setup with CORS ORIGIN. 
 ## Docker
 
-Docker is supported. Edit docker-compose.yaml and set value ENV you want.
+Docker is supported. Edit client/environments & docker-compose.yaml and set value ENV you want.
 
 - **Branch**: `docker`
 - **Steps**: Just clone the repository, check out `docker` branch then from `root` directory, run `docker compose up -d` and Docker will take over. When prebuild, run `docker compose build` first, after run `docker compose up -d`.

@@ -1,0 +1,15 @@
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-top: auto;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.05);
+}
+.product-img {
+  max-width: 450px;
+  max-height: 450px;
+}
+.cart-body {
+  border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+}

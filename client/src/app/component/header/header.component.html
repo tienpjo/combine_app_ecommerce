@@ -1,0 +1,100 @@
+<!-- Top Bar -->
+<section class="top-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-4">
+        <div class="top-left d-flex">
+          <ng-container *ngIf="user$ | async as user">
+            <div class="lang-box" *ngIf="user.role === 'Admin'">
+              <a [routerLink]="['/' + '/dashboard/index']">Dashboard<i class="fa fa-angle-down"></i></a>
+            </div>
+          </ng-container>
+
+          <!-- <div class="mny-box">
+            <span>VND<i class="fa fa-angle-down"></i></span>
+            <ul class="list-unstyled">
+              <li>USD</li>
+            </ul>
+          </div> -->
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-8">
+        <div class="top-right text-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a href=""><img src="" alt="" />DS yêu thích</a>
+            </li>
+            <li class="list-inline-item" *ngIf="(user$ | async) === null">
+              <a [routerLink]="['/' + '/authorize/signin']">Đăng nhập</a>
+            </li>
+            <ng-container *ngIf="user$ | async as user">
+              <li class="list-inline-item">
+                <a [routerLink]="['/' + '/authorize/logout']">Hi, {{ user.username }}</a>
+              </li>
+              <li class="list-inline-item">
+                <a (click)="logOut()">Log out</a>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Top Bar -->
+<!-- Logo Area -->
+<section class="logo-area">
+  <div class="container">
+    <div class="row justify-content-center align-self-center">
+      <div class="col-md-3">
+        <div class="logo align-self-center">
+          <a class="logo-name" href="/">EShop<span>.vn</span></a>
+        </div>
+      </div>
+      <div class="col-md-5 padding-fix">
+        <form action="#" class="search-bar">
+          <input
+            type="text"
+            name="search-product"
+            [formControl]="querySearch"
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            placeholder="Tìm kiếm sản phẩm..."
+          />
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <div class="carts-area d-flex">
+          <div class="call-box d-flex">
+            <div class="call-ico">
+              <img src="../../../assets/img/call.png" alt="" />
+            </div>
+            <div class="call-content">
+              <span>Gọi chúng tôi</span>
+              <p>(+84)098970173</p>
+            </div>
+          </div>
+          <div class="cart-box ml-auto text-center">
+            <a class="cart-btn" (click)="cartClick()" *ngIf="cart$ | async as cart">
+              <img src="../../../assets/img/cart.png" alt="cart" />
+              <span>{{ cart?.totalQty }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-menu-bar [category]="category$ | async"></app-menu-bar>
+<app-cart #appcart></app-cart>
+<ng-template #existUser>
+  <ng-container *ngIf="user$ | async as user">
+    <li class="list-inline-item">
+      <a [routerLink]="['/' + '/authorize/logout']">Hi, {{ user.username }}</a>
+    </li>
+    <li class="list-inline-item">
+      <a (click)="logOut()">Log out</a>
+    </li>
+  </ng-container>
+</ng-template>

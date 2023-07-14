@@ -1,0 +1,49 @@
+<section class="slider-area">
+  <div class="spinner-grow text-primary spinner" role="status" *ngIf="loadingProduct$ | async">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-3" *ngIf="categories$ | async as categories">
+        <app-side-bar [categories]="categories"></app-side-bar>
+      </div>
+      <div class="col-lg-9 col-md-9 padding-fix-l20">
+        <div class="owl-carousel owl-slider">
+          <app-carousel></app-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-4">
+        <div class="row">
+          <div class="col-md-12"></div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-8 padding-fix-l20">
+        <div class="product-area">
+          <div class="area-title">
+            <h5>Product</h5>
+          </div>
+          <div class="container">
+            <div class="row d-flex flex-wrap justify-content-between">
+              <ng-container *ngIf="products$ | async as products">
+                <div class="col-md-4" *ngFor="let product of products; trackBy: trackById">
+                  <app-product-list
+                    [cartIds]="cartIds$ | async"
+                    [product]="product"
+                    (addProduct)="addToCart($event)"
+                    (removeProduct)="removeFromCart($event)"
+                  ></app-product-list>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

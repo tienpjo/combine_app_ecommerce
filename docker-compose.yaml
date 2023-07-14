@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server_api
+    environment:
+      - HOST=http://localhost - edit here
+      - PORT=8080 - edit here
+      - JWT_KEY=JWT_KEY
+      - COOKIE_KEY=FSFFLFSSGLGLGKSGSLJMSGLJSGLSGLJTJRTKHFSMNSNMFSNMFSNMFSFFSSFKLFSKSFKJFSKJ
+      - MONGO_URI=mongodb://mongo_db:27017/ecommerce
+      - ORIGIN=http://localhost - edit here
+    ports:
+      - '8080:8080'
+    depends_on:
+      - mongodb
+    networks:
+      - app_network
+
+  mongodb:
+    image: mongo
+    container_name: mongo_db
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongo-volumes:/data/db
+    networks:
+      - app_network
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: client
+    ports:
+      - '80:80'
+    depends_on:
+      - server
+    networks:
+      - app_network
+
+networks:
+  app_network:

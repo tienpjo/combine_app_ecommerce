@@ -1,0 +1,34 @@
+<!-- Menu Area -->
+<section class="menu-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="main-menu">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item mega-menu">
+              <a>ALL PRODUCT <i class="fa fa-angle-down"></i></a>
+            </li>
+            <li class="list-inline-item" *ngFor="let cat of category; index as i">
+              <a>{{ cat.title.toUpperCase() }} <i class="fa fa-angle-down"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="20-contact.html">CONTACT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Menu Area -->
+
+<section class="sticky-menu" [style.display]="display">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2 col-md-3">
+        <a class="logo-name" (click)="onScrolling()">EShop.vn</a>
+      </div>
+      <div class="col-lg-6 col-md-7"></div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+<div class="product">
+  <div class="product-body">
+    <div class="product-heading">
+      <ul class="list-unstyled list-inline product-title">
+        <li class="list-inline-item">
+          <a [routerLink]="['product/' + product?.titleUrl]">{{ product.title }}</a>
+        </li>
+        <li class="list-inline-item category">
+          <a class="" href="">{{ product.category }}</a>
+        </li>
+      </ul>
+    </div>
+    <a [routerLink]="['product/' + product?.titleUrl]">
+      <img class="main-img img-fluid" [src]="product.mainImage.url" [alt]="product.title"
+    /></a>
+    <div class="row align-self-center">
+      <div class="mt-2 d-flex justify-content-between">
+        <div class="col-md-8" *ngIf="product.onSale && product.regularPrice; else regularPrice">
+          <ul class="list-unstyled list-inline price">
+            <li class="list-inline-item">{{ product.salePrice }} VND</li>
+            <li class="list-inline-item">{{ product.regularPrice }}</li>
+          </ul>
+        </div>
+        <div class="col-md-5">
+          <app-cart-show
+            *ngIf="cartIds"
+            [items_qty]="cartIds[product?._id]"
+            [showSmall]="true"
+            (add)="onAddProduct(product?._id)"
+            (remove)="onRemoveProduct(product?._id)"
+          ></app-cart-show>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #regularPrice>{{ product.regularPrice }}</ng-template>
+</div>

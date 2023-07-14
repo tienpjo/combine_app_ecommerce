@@ -1,0 +1,25 @@
+.menu-widget p {
+  font-size: 15px;
+  color: #fff;
+  background: #5677fc;
+  padding: 12px 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.menu-widget p i {
+  font-size: 14px;
+  margin-right: 10px;
+}
+.menu-widget ul {
+  border: 1px solid #e5e5e5;
+  border-top: none;
+}
+.menu-widget ul li a {
+  display: block;
+  font-size: 15px;
+  padding: 8px 20px;
+  border-bottom: 1px solid #eeeeee;
+}
+i {
+  margin-right: 14px;
+}

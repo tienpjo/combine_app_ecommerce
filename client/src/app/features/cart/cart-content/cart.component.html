@@ -1,0 +1,36 @@
+<div class="cart" #cartbody>
+  <div class="close-btn">
+    <fa-icon icon="close" size="2x" (click)="closeCart()" #cartClose></fa-icon>
+  </div>
+  <div class="cart-body" *ngIf="cart$ | async as cart">
+    <div class="cart-heading text-center">
+      <h5>Shopping Cart</h5>
+    </div>
+    <div class="cart-content">
+      <div class="cart-item d-flex flex-column" *ngFor="let item of cart.items">
+        <div class="cart-disc d-flex justify-content-between">
+          <div class="d-flex justify-content-between">
+            <img class="item-image img-fluid" [src]="item.item.mainImage.url" [alt]="item.item.title" />
+            <div class="p-2 d-flex flex-column align-self-center">
+              <a [routerLink]="">{{ item.item.title }}</a>
+              <span>{{ item.qty }} x {{ item.price }}</span>
+            </div>
+          </div>
+          <div class="delete-btn align-self-center" (click)="removeCart(item?.id)">
+            <fa-icon icon="trash" size="2x"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cart-btm">
+      <p class="text-right">
+        Total: <span class="sub-total">{{ cart.totalPrice }} VND</span>
+      </p>
+      <ng-container *ngIf="cart.totalQty !== 0">
+        <a (click)="checkOut()">Checkout</a>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="cart-overlay" #cartoverlay (click)="closeCart()"></div>

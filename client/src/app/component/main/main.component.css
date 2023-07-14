@@ -1,0 +1,22 @@
+.slider-area {
+  margin-bottom: 30px;
+}
+.product-area {
+  border: 1px solid #e5e5e5;
+  padding: 16px 24px;
+}
+.area-title h5 {
+  color: #444444;
+  text-transform: uppercase;
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  font-weight: 600;
+}
+.spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031; /* High z-index so it is on top of the page */
+  top: 50%; /* where ... is the element's height */
+  right: 50%; /* where ... is the element's width */
+}

@@ -1,0 +1,13 @@
+<div class="container">
+  <ng-container *ngIf="items$ | async as items">
+    <ng-container *ngIf="items.product as product">
+      <app-product-content
+        [product]="product"
+        [cartIds]="items?.cartIds"
+        (addProduct)="addToCart($event)"
+        (removeProduct)="removeFromCart($event)"
+      >
+      </app-product-content>
+    </ng-container>
+  </ng-container>
+</div>

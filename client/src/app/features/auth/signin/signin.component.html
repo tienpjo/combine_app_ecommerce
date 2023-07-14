@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      {{ pageTitle }}
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="signIn()" [formGroup]="signInForm" autocomplete="off">
+        <fieldset>
+          <div class="row mt-2">
+            <label class="col-md-2 col-form-label" for="userNameId">User Name</label>
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="userNameId"
+                type="text"
+                placeholder="User Name (required)"
+                name="userName"
+                formControlName="username"
+                [ngClass]="{
+                  'is-invalid':
+                    (signInForm.get('username')?.touched || signInForm.get('username')?.dirty) &&
+                    !signInForm.get('username')?.valid
+                }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="signInForm.get('username')?.errors?.['required']"> Email is required. </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <label class="col-md-2 col-form-label" for="passwordId">Password</label>
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="passwordId"
+                type="password"
+                placeholder="Password (required)"
+                name="password"
+                formControlName="password"
+                [ngClass]="{
+                  'is-invalid':
+                    (signInForm.get('password')?.touched || signInForm.get('password')?.dirty) &&
+                    !signInForm.get('password')?.valid
+                }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="signInForm.get('password')?.errors?.['required']"> Password is required. </span>
+              </span>
+            </div>
+          </div>
+          <!-- [disabled]="!signInForm.valid" -->
+          <div class="row mt-2">
+            <div class="col-md-4 offset-md-2">
+              <button
+                class="btn btn-primary me-3"
+                type="submit"
+                style="width: 80px"
+                [disabled]="!signInForm.valid"
+              >
+                Log In
+              </button>
+              <button class="btn btn-outline-secondary" type="button" style="width: 80px">Cancel</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      Login Fail! Please check username and password, try again
+    </div>
+  </div>
+</div>

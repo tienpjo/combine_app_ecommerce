@@ -1,0 +1,308 @@
+/* =======================================
+02. Top Bar
+======================================= */
+.top-bar {
+  height: 40px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.top-bar .top-left .lang-box {
+  position: relative;
+  height: 40px;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+  border-bottom: none;
+  padding: 9px 15px;
+}
+
+.top-bar .top-left .lang-box span {
+  cursor: pointer;
+}
+
+.top-bar .top-left .lang-box span img {
+  margin-right: 8px;
+  vertical-align: text-bottom;
+}
+
+.top-bar .top-left .lang-box span i {
+  margin-left: 5px;
+}
+
+.top-bar .top-left .lang-box ul {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  border: 1px solid #e5e5e5;
+  min-width: 125px;
+  background: #fff;
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  -ms-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
+  transition: 0.2s ease;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  -webkit-transform: scaleY(0);
+  -ms-transform: scaleY(0);
+  transform: scaleY(0);
+  visibility: hidden;
+  z-index: 999;
+  -webkit-transform-origin: center top 0;
+  -ms-transform-origin: center top 0;
+  transform-origin: center top 0;
+}
+
+.top-bar .top-left .lang-box ul li {
+  padding: 8px 0 8px 20px;
+  cursor: pointer;
+}
+
+.top-bar .top-left .lang-box ul li img {
+  margin-right: 8px;
+  vertical-align: text-bottom;
+}
+
+.top-bar .top-left .lang-box ul li:hover {
+  background: #f5f5f5;
+}
+
+.top-bar .top-left .lang-box:hover {
+  color: #444444;
+  font-weight: 600;
+}
+
+.top-bar .top-left .lang-box:hover ul {
+  opacity: 1;
+  -webkit-transform: scaleY(1);
+  -ms-transform: scaleY(1);
+  transform: scaleY(1);
+  visibility: visible;
+}
+
+.top-bar .top-left .lang-box:hover ul li {
+  color: #555555;
+  font-weight: normal;
+}
+
+.top-bar .top-left .mny-box {
+  position: relative;
+  height: 40px;
+  border-right: 1px solid #e5e5e5;
+  padding: 9px 15px;
+}
+
+.top-bar .top-left .mny-box span {
+  cursor: pointer;
+}
+
+.top-bar .top-left .mny-box span i {
+  margin-left: 5px;
+}
+
+.top-bar .top-left .mny-box ul {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  border: 1px solid #e5e5e5;
+  min-width: 75px;
+  background: #fff;
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  -ms-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
+  transition: 0.2s ease;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  -webkit-transform: scaleY(0);
+  -ms-transform: scaleY(0);
+  transform: scaleY(0);
+  visibility: hidden;
+  z-index: 999;
+  -webkit-transform-origin: center top 0;
+  -ms-transform-origin: center top 0;
+  transform-origin: center top 0;
+}
+
+.top-bar .top-left .mny-box ul li {
+  padding: 8px 0 8px 20px;
+  cursor: pointer;
+}
+
+.top-bar .top-left .mny-box ul li:hover {
+  background: #f5f5f5;
+}
+
+.top-bar .top-left .mny-box:hover {
+  color: #444444;
+  font-weight: 600;
+}
+
+.top-bar .top-left .mny-box:hover ul {
+  opacity: 1;
+  -webkit-transform: scaleY(1);
+  -ms-transform: scaleY(1);
+  transform: scaleY(1);
+  visibility: visible;
+}
+
+.top-bar .top-left .mny-box:hover ul li {
+  color: #555555;
+  font-weight: normal;
+}
+
+.top-bar .top-right ul li {
+  margin: 0;
+}
+
+.top-bar .top-right ul li a {
+  color: #555555;
+  height: 40px;
+  display: inline-block;
+  border-right: 1px solid #e5e5e5;
+  padding: 9px 15px;
+}
+
+.top-bar .top-right ul li a img {
+  width: 13px;
+  margin-right: 5px;
+  margin-top: -3px;
+}
+
+.top-bar .top-right ul li a:hover {
+  color: #444444;
+  font-weight: 600;
+}
+
+.top-bar .top-right ul li:first-child a {
+  border-left: 1px solid #e5e5e5;
+}
+
+.top-bar {
+  height: 40px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.top-bar .top-left .lang-box {
+  position: relative;
+  height: 40px;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+  border-bottom: none;
+  padding: 9px 15px;
+}
+
+.top-bar .top-left .lang-box span {
+  cursor: pointer;
+}
+
+.top-bar .top-left .lang-box span img {
+  margin-right: 8px;
+  vertical-align: text-bottom;
+}
+.top-bar .top-left .lang-box span i {
+  margin-left: 5px;
+}
+
+/* =======================================
+04. Logo Area
+======================================= */
+.logo-area {
+  height: 125px;
+  padding-top: 24px;
+}
+
+.logo-area .logo a img {
+  margin-top: 18px;
+}
+
+.logo-area form.search-bar {
+  margin-top: 12px;
+  position: relative;
+}
+
+.logo-area form.search-bar input {
+  border: 2px solid #dddddd;
+  height: 45px;
+  width: 100%;
+  padding-left: 20px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  border-radius: 30px;
+}
+
+.logo-area form.search-bar input:focus {
+  border-color: #5677fc;
+}
+
+.logo-area form.search-bar button {
+  font-size: 18px;
+  color: #5677fc;
+  background: transparent;
+  height: 100%;
+  width: 50px;
+  text-align: center;
+  border: none;
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  -ms-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.logo-area .carts-area {
+  padding-top: 15px;
+  padding-left: 70px;
+}
+
+.logo-area .carts-area .call-box .call-ico img {
+  max-width: 40px;
+}
+
+.logo-area .carts-area .call-box .call-content span {
+  color: #969696;
+  font-weight: 600;
+}
+
+.logo-area .carts-area .call-box .call-content p {
+  font-size: 16px;
+  color: #444444;
+  margin-top: -4px;
+  font-weight: 600;
+}
+
+.logo-area .carts-area .cart-box {
+  margin-right: 10px;
+  padding-top: 5px;
+  position: relative;
+}
+
+.logo-area .carts-area .cart-box a {
+  position: relative;
+}
+
+.logo-area .carts-area .cart-box a span {
+  font-size: 12px;
+  color: #fff;
+  background: #5677fc;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: -12px;
+  right: -8px;
+  font-weight: 600;
+  padding-top: 1px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.logo-name {
+  font-size: 44px;
+  font-weight: 500;
+}

@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="row">
+    <div class="mt-2 col-md-4 order-md-2 mb-4" *ngIf="cart$ | async as cart">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted p-item">Your cart</span>
+        <span class="badge badge-secondary badge-pill">{{ cart.totalQty }}</span>
+      </h4>
+      <ul class="list-group mb-3">
+        <li
+          class="list-group-item d-flex justify-content-between lh-condensed"
+          *ngFor="let item of cart.items"
+        >
+          <div>
+            <h6 class="p-item">{{ item.item.title }}</h6>
+            <small class="text-muted">{{ item.qty }} x {{ item.price }}</small>
+          </div>
+          <span class="text-muted">{{ item.price }}</span>
+          <!-- <span class="text-muted"></span> -->
+        </li>
+        <!-- <ng-template #Nocart>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <span class="text-center"> No cart!!</span>
+          </li>
+        </ng-template> -->
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <span>Total (VND)</span>
+          <strong>{{ cart.totalPrice }}</strong>
+        </li>
+      </ul>
+
+      <form class="card p-2">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Promo code" />
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-secondary">Redeem</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="mt-2 col-md-8 order-md-1">
+      <h4 class="mb-3">Thông tin địa chỉ / Address</h4>
+      <form (ngSubmit)="checkOut()" [formGroup]="checkoutForm" autocomplete="off">
+        <div class="row">
+          <div class="mb-3">
+            <label for="Frist name">Frist name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstname"
+              placeholder="Duc Tien"
+              [ngClass]="{
+                'is-invalid': checkoutForm.get('fristName')?.touched || checkoutForm.get('fristName')?.dirty
+              }"
+            />
+            <div class="invalid-feedback">Frist name is required</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="lastName"> Last name</label>
+            <input
+              type="text"
+              placeholder="Tran"
+              class="form-control"
+              id="lastName"
+              [ngClass]="{
+                'is-invalid': checkoutForm.get('lastName')?.touched || checkoutForm.get('lastName')?.dirty
+              }"
+            />
+
+            <div class="invalid-feedback">Last name is required</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email">Email </label>
+            <input
+              type="text"
+              placeholder="ductien.hust@gmail.com"
+              class="form-control"
+              id="email"
+              [ngClass]="{
+                'is-invalid': checkoutForm.get('email')?.touched || checkoutForm.get('email')?.dirty
+              }"
+            />
+            <div class="invalid-feedback">Email is required</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="adress"> Address</label>
+            <input
+              type="text"
+              placeholder="Ota-ku, Tokyo"
+              class="form-control"
+              id="address"
+              [ngClass]="{
+                'is-invalid': checkoutForm.get('address')?.touched || checkoutForm.get('address')?.dirty
+              }"
+            />
+            <div class="invalid-feedback">Please enter your shipping adrress</div>
+          </div>
+          <div class="mb-3">
+            <label for="Address2"> Address 2 <span class="text-muted">(Optional)</span> </label>
+            <input type=" text" placeholder="nononin 102 ... " id="adress-2" class="form-control" />
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Checkout</button>
+      </form>
+    </div>
+  </div>
+</div>

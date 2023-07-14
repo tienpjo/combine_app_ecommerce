@@ -1,0 +1,341 @@
+<div class="container">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-6">
+          <h3>Products</h3>
+        </div>
+
+        <div class="col-sm-6">
+          <button
+            type="button"
+            class="btn btn-success"
+            data-toogle="modal"
+            (click)="onAddProduct(addproduct)"
+          >
+            <span class="glyphicon icon-action">&#x2b;</span>
+            Add Product
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-toogle="modal"
+            (click)="onDeleteProduct(deleteproduct)"
+          >
+            <span class="glyphicon icon-action">&#xe014;</span> <span> Delete Product</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <ng-container *ngIf="products$ | async as products">
+          <tbody *ngFor="let product of products; index as i">
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>{{ product.title }}</td>
+              <td>{{ product.category }}</td>
+              <td>{{ product.stock }}</td>
+              <td>
+                <a href="#editEmployeeModal" class="edit" data-toggle="modal"
+                  ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a
+                >
+                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"
+                  ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </ng-container>
+      </table>
+    </div>
+  </div>
+  <!-- Modal -->
+
+  <ng-template #addproduct let-modal>
+    <form (ngSubmit)="submitProduct()" [formGroup]="submitProductForm">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Product</h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mt-2">
+          <label class="col-md-2 col-form-label" for="TitleId">Title</label>
+          <div class="col-md-8">
+            <input
+              class="form-control"
+              id="titleId"
+              type="text"
+              placeholder="Samsung Galaxy Watch"
+              name="title"
+              formControlName="title"
+              [ngClass]="{
+                'is-invalid':
+                  (submitProductForm.get('title')?.touched || submitProductForm.get('title')?.dirty) &&
+                  !submitProductForm.get('title')?.valid
+              }"
+            />
+            <span class="invalid-feedback">
+              <span *ngIf="submitProductForm.get('title')?.errors?.['required']"> Title is required. </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <label class="col-md-2 col-form-label" for="description">Description</label>
+          <div class="col-md-8">
+            <input
+              class="form-control"
+              id="descriptionId"
+              type=""
+              placeholder="Samsung Galaxy Watch smartwatch (46mm, GPS, Bluetooth)"
+              name="description"
+              formControlName="description"
+              [ngClass]="{
+                'is-invalid':
+                  (submitProductForm.get('description')?.touched ||
+                    submitProductForm.get('description')?.dirty) &&
+                  !submitProductForm.get('description')?.valid
+              }"
+            />
+            <span class="invalid-feedback">
+              <span *ngIf="submitProductForm.get('description')?.errors?.['required']">
+                Description is required.
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <label class="col-md-2 col-form-label" for="descriptionFull">descriptionFull</label>
+          <div class="col-md-8">
+            <textarea
+              class="form-control"
+              id="descriptionFullId"
+              placeholder="Samsung Galaxy Watch smartwatch (46mm, GPS, Bluetooth) – Silver/Black (US Version with Warranty)"
+              name="descriptionFull"
+              formControlName="descriptionFull"
+              rows="3"
+            >
+             
+              [ngClass]="{
+                'is-invalid':
+                  (submitProductForm.get('descriptionFull')?.touched ||
+                    submitProductForm.get('descriptionFull')?.dirty) &&
+                  !submitProductForm.get('descriptionFull')?.valid
+              }"
+            </textarea>
+            <span class="invalid-feedback">
+              <span *ngIf="submitProductForm.get('descriptionFull')?.errors?.['required']">
+                descriptionFull is required.
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <label class="col-md-2 col-form-label" for="Tags">Tags</label>
+          <div class="col-md-8" (click)="focusCategoryInput()">
+            <span class="tag-item" *ngFor="let tag of tagsCategory">
+              {{ tag }}
+              <span class="remove-tag" (click)="removeTag(tag)">×</span>
+            </span>
+            <input
+              class="form-control"
+              id="tagsId"
+              type="text"
+              #tagInput
+              placeholder="watch"
+              name="category"
+              formControlName="category"
+              (keyup)="onCategoryKeyUp($event)"
+              [ngClass]="{
+                'is-invalid':
+                  (submitProductForm.get('category')?.touched || submitProductForm.get('category')?.dirty) &&
+                  !submitProductForm.get('category')?.valid
+              }"
+            />
+            <span class="invalid-feedback">
+              <span *ngIf="submitProductForm.get('category')?.errors?.['required']"> Tags is required. </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <label class="col-md-2 col-form-label" for="regularPrice">regularPrice</label>
+          <div class="col-md-8">
+            <input
+              class="form-control"
+              id="regularPriceId"
+              type="number"
+              placeholder="1000$"
+              name="regularPrice"
+              formControlName="regularPrice"
+              [ngClass]="{
+                'is-invalid':
+                  (submitProductForm.get('regularPrice')?.touched ||
+                    submitProductForm.get('regularPrice')?.dirty) &&
+                  !submitProductForm.get('regularPrice')?.valid
+              }"
+            />
+            <span class="invalid-feedback">
+              <span *ngIf="submitProductForm.get('regularPrice')?.errors?.['required']">
+                regularPrice is required.
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <label class="col-md-2 col-form-label" for="regularPrice">salePrice</label>
+          <div class="col-md-8">
+            <input
+              class="form-control"
+              id="salePriceId"
+              type="number"
+              placeholder="200$"
+              name="salePrice"
+              formControlName="salePrice"
+              [ngClass]="{
+                'is-invalid':
+                  (submitProductForm.get('salePrice')?.touched ||
+                    submitProductForm.get('salePrice')?.dirty) &&
+                  !submitProductForm.get('salePrice')?.valid
+              }"
+            />
+            <span class="invalid-feedback">
+              <span *ngIf="submitProductForm.get('salePrice')?.errors?.['required']">
+                salePrice is required.
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <label class="col-md-3 col-form-label" for="stock">stock</label>
+          <div class="col-md-7">
+            <input
+              class="form-check-input"
+              id="stockId"
+              type="checkbox"
+              name="stock"
+              (change)="checkedChanged()"
+              formControlName="stock"
+            />
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <label class="col-md-2 col-form-label" for="regularPrice">mainImage</label>
+          <div class="col-md-8">
+            <input
+              class="form-control"
+              id="mainImageId"
+              type=""
+              placeholder="media.amazon..."
+              name="mainImage"
+              formControlName="mainImage"
+              [ngClass]="{
+                'is-invalid':
+                  (submitProductForm.get('mainImage')?.touched ||
+                    submitProductForm.get('mainImage')?.dirty) &&
+                  !submitProductForm.get('mainImage')?.valid
+              }"
+            />
+            <span class="invalid-feedback">
+              <span *ngIf="submitProductForm.get('mainImage')?.errors?.['required']">
+                stock is required.
+              </span>
+            </span>
+          </div>
+        </div>
+        <ng-container *ngFor="let subImageId of subImg.controls; index as i">
+          <div class="row mt-2" formArrayName="subImage">
+            <label class="col-md-2 col-form-label" for="subImageId-{{ i }}">subImage[{{ i }}]</label>
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="subImageId-{{ i }}"
+                type="text"
+                placeholder="media.amazon..."
+                name="subImage"
+                [formControlName]="i"
+              />
+            </div>
+          </div>
+        </ng-container>
+        <div class="row mt-2">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <div class="d-flex flex-row-reverse">
+              <button type="button" class="btn btn-dark" (click)="addSubImage()">+ Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="submit"
+          class="btn btn-primary me-3"
+          [disabled]="!submitProductForm.valid"
+          (click)="modal.close('Save click')"
+        >
+          Save
+        </button>
+        <button type="button" class="btn btn-secondary me-3" data-dismiss="modal">Close</button>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template #deleteproduct let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add Product</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="deleteProduct()" [formGroup]="submitProductForm">
+        <div class="row mt-2">
+          <label class="col-md-2 col-form-label" for="TitleId">Title</label>
+          <div class="col-md-8">
+            <input
+              class="form-control"
+              id="titleId"
+              type="text"
+              placeholder="Samsung Galaxy Watch"
+              name="title"
+              formControlName="title"
+              [ngClass]="{
+                'is-invalid':
+                  (submitProductForm.get('title')?.touched || submitProductForm.get('title')?.dirty) &&
+                  !submitProductForm.get('title')?.valid
+              }"
+            />
+            <span class="invalid-feedback">
+              <span *ngIf="submitProductForm.get('title')?.errors?.['required']"> Title is required. </span>
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</div>

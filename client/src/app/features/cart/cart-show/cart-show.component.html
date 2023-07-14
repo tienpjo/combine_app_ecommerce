@@ -1,0 +1,23 @@
+<!-- <img src="../../../assets/img/cart.png" alt="cart" (click)="add.emit()" />
+  <span *ngIf="!!items_qty">{{ items_qty }}</span>
+  <img src="../../../assets/img/cart.png" alt="cart" (click)="remove.emit()" /> -->
+<!-- <img src="../../../assets/img/cart.png" alt="cart" (click)="add.emit()" /> -->
+<ng-container *ngIf="showSmall; else showOpt">
+  <div class="d-flex flex-row-reverse justify-content-between mt-1">
+    <div class="cart_show-wrap" (click)="add.emit()">
+      <fa-icon icon="cart-plus" size="lg"></fa-icon>
+    </div>
+    <div class="cart-remove-show" *ngIf="!!items_qty">
+      <fa-icon icon="cart-arrow-down" (click)="remove.emit()" size="lg"></fa-icon>
+      <span class="cart_show-quantity"> {{ items_qty }}pcs</span>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #showOpt>
+  <div class="buttons d-flex flex-row">
+    <button class="btn btn-success cart-button px-5" (click)="add.emit()">
+      <fa-icon icon="cart-plus" size="lg"></fa-icon><span class="ms-3">Add to cart</span>
+    </button>
+  </div>
+</ng-template>

@@ -1,0 +1,66 @@
+<div class="product_content">
+  <div class="row">
+    <div class="col-md-1 align-self-center">
+      <div class="d-flex flex-column gap-3">
+        <img
+          class="preview-img img-fluid"
+          [src]="product.mainImage?.url"
+          [alt]="product?.title"
+          (mouseenter)="onClickImg(product?.mainImage?.url)"
+          [ngClass]="mainImgUrl === product.mainImage?.url ? 'active' : ''"
+        />
+        <div *ngFor="let subImage of product.subImage; index as i">
+          <span (mouseenter)="onClickImg(product?.subImage[i])">
+            <img
+              class="preview-img img-fluid"
+              [src]="product.subImage[i]"
+              [alt]="product?.title"
+              [ngClass]="mainImgUrl === product.subImage[i] ? 'active' : ''"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 align-self-center">
+      <div class="product_img">
+        <img class="img-fluid" [src]="mainImgUrl" [alt]="product?.title" />
+      </div>
+    </div>
+    <!-- <ng-template #clickImgShow>
+      <img class="img-fluid" [src]="mainImgUrl" [alt]="product?.title" />
+    </ng-template> -->
+    <div class="col-md-7 padding-fix-l20">
+      <div class="product-detail">
+        <div class="product-heading">
+          <div class="product-title">{{ product.title }}</div>
+
+          <div class="ratings">
+            <fa-icon class="rating-color" icon="star" size="lg"></fa-icon>
+            <fa-icon class="rating-color" icon="star" size="lg"></fa-icon>
+            <fa-icon class="rating-color" icon="star" size="lg"></fa-icon>
+            <fa-icon class="rating-color" icon="star" size="lg"></fa-icon>
+            <fa-icon class="rating-color" icon="star" size="lg"></fa-icon>
+          </div>
+
+          <div class="product-price d-flex gap-3">
+            <span class="product-nosale-price align-self-center">{{ product?.regularPrice }}VND</span>
+            <span class="product-sale-price">{{ product?.salePrice }}VND</span>
+          </div>
+        </div>
+        <div class="product-info d-flex gap-3 flex-column">
+          <div class="product-description">{{ product?.descriptionFull }}</div>
+          <div class="product-stock">
+            {{ product?.stock }}
+          </div>
+          <app-cart-show
+            *ngIf="cartIds"
+            [items_qty]="cartIds[product?._id]"
+            (add)="onAddProduct(product?._id)"
+            (remove)="onRemoveProduct(product?._id)"
+          ></app-cart-show>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
